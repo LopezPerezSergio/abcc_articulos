@@ -26,7 +26,6 @@ class StoreArticleRequest extends FormRequest
             'article' => ['required'],
             'brand' => ['required'],
             'model' => ['required'],
-            'family' => ['required'],
             'stock' => ['required'],
             'quantity' => ['required'],
         ];

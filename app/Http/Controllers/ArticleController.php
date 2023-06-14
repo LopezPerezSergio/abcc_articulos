@@ -65,11 +65,10 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit($sku)
     {
-        
         $departments = Department::all();
-        return view('Articles.edit', compact('departments'));
+        return view('Articles.edit', compact('departments','sku'));
     }
 
     /**
