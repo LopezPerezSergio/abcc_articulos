@@ -51,6 +51,7 @@ class Article extends Model
         return $result;
     }
 
+    // funcion para eliminar
     public static function deleteArticle($sku)
     {
         $sql = "CALL sp_eliminar_articulo(?)";
@@ -58,6 +59,7 @@ class Article extends Model
         DB::statement($sql, [$sku]);
     }
 
+    // funcion para editar
     public static function updateArticle($sku, $article, $brand, $model, $family_id, $date_high, $stock, $quantity, $disconinued, $date_low)
     {
         $sql = "CALL sp_cambio_articulo(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

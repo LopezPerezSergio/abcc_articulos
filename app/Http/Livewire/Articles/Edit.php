@@ -39,7 +39,6 @@ class Edit extends Component
     {
         if ($value) {
             $article = Article::showArticle($value);
-            dump($article);
             if ($article) {
                 $this->discontinued = $article[0]->discontinued;
                 $this->article = $article[0]->article;
@@ -53,7 +52,6 @@ class Edit extends Component
                 $this->resetExcept('departments','sku');
             }
         }
-        $this->reset('stock','quantity');
     }
 
     public function updatedDepartment($value)

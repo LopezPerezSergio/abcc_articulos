@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Articles\ArticleRequest;
+use App\Http\Requests\Articles\StoreArticleRequest;
+use App\Http\Requests\Articles\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Department;
 use Carbon\Carbon;
@@ -32,7 +35,7 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
         //return $request;
         Article::addArticle(
@@ -72,7 +75,7 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $sku)
+    public function update(UpdateArticleRequest $request, $sku)
     {
         $article = Article::showArticle($sku);
         $article = $article[0]; 
