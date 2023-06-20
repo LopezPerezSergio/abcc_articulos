@@ -88,7 +88,7 @@ class Edit extends Component
     public function updatedDepartment($value)
     {
         $this->reset('categories', 'families');
-        
+
         if ($value) {
             $this->categories = Department::where('id', $value)->first()->categories;
         }
@@ -96,6 +96,7 @@ class Edit extends Component
 
     public function updatedCategory($value)
     {
+        $this->reset('families');
         if ($value) {
             $this->families = Category::where('id', $value)->first()->families;
         }
