@@ -29,4 +29,14 @@ class Category extends Model
 
         return $result;
     }
+
+    // funcion para buscar un articulo
+    public static function showCategories($department_id)
+    {
+        $sql = 'CALL sp_ver_categorias(?)';
+        
+        $result = DB::select($sql,[$department_id]); 
+
+        return $result;
+    }
 }

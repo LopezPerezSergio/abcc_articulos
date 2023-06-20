@@ -29,4 +29,14 @@ class Family extends Model
 
         return $result;
     }
+
+    // funcion para buscar un articulo
+    public static function showFamilies($category_id)
+    {
+        $sql = 'CALL sp_ver_familias(?)';
+        
+        $result = DB::select($sql,[$category_id]); 
+
+        return $result;
+    }
 }

@@ -24,10 +24,41 @@ class Edit extends Component
     public $quantity;
     public $date_h;
     public $date_l;
-    public $category;
+
     public $department;
+    public $category;
+    public $family;
 
     public $date;
+
+    public function mount()
+    {
+        if ($this->sku) {
+            $article = Article::showArticle($this->sku);
+
+            if ($article) {
+                $this->discontinued = $article[0]->discontinued;
+                $this->article = $article[0]->article;
+                $this->brand = $article[0]->brand;
+                $this->model = $article[0]->model;
+                $this->stock = $article[0]->stock;
+                $this->quantity = $article[0]->quantity;
+                $this->date_h = $article[0]->date_high;
+                $this->date_l = $article[0]->date_low;
+
+                $family_article = Family::showFamiliy($article[0]->family_id);
+                $category_article = Category::showCategory($family_article[0]->category_id);
+                $department_article = Department::showDepartment($category_article[0]->department_id);
+
+                $this->department = $department_article[0]->id;
+                $this->category = $category_article[0]->id;
+                $this->family = $family_article[0]->id;
+
+                $this->categories = Category::showCategories($this->department);
+                $this->families = Family::showFamilies($this->category);
+            }
+        }
+    }
 
     public function render()
     {
@@ -56,11 +87,10 @@ class Edit extends Component
 
     public function updatedDepartment($value)
     {
+        $this->reset('categories', 'families');
+        
         if ($value) {
             $this->categories = Department::where('id', $value)->first()->categories;
-        }
-        else{
-            $this->reset('categories', 'families');
         }
     }
 

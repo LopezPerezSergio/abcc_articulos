@@ -66,7 +66,7 @@
                     @forelse ($departments as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @empty
-                        <option selected=""></option>
+                        <option ></option>
                     @endforelse
                 </select>
             </div>
@@ -87,8 +87,9 @@
             <div class="mb-4">
                 <label for="family"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Familia</label>
-                <select id="family" name="family" @if (!$article) disabled @endif
+                <select id="family" name="family" @if (!$article) disabled @endif wire:model='family'
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    <option></option>
                     @forelse ($families as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @empty
